@@ -21,12 +21,13 @@
     <input type="number" v-model="inputGrade" />
     <div></div>
     <button v-on:click="resister">参加します！！！</button>
+
     <div v-for="output in outputs" v-bind:key="output">
       <div>
-        <div class="display">{{ output.date }}</div>
-        <div class="display">{{ output.name }}</div>
-        <div class="display">{{ output.grade }}</div>
-        <div class="display">{{ output.university }}</div>
+        <div class="display">{{ output.date }}:</div>
+        <div class="display">{{ output.university }}の</div>
+        <div class="display">{{ output.grade }}年</div>
+        <div class="display">{{ output.name }}さんですね！</div>
       </div>
     </div>
   </div>
@@ -40,19 +41,34 @@ export default {
       inputGrade: "",
       univ: "",
       outputs: [],
+      output: "",
     };
   },
   methods: {
     resister() {
-      const his_info = {
-        date: this.resister_day,
-        name: this.inputName,
-        grade: this.inputGrade,
-        university: this.univ,
-      };
-      this.outputs.push(his_info);
+      if (
+        this.inputName != "" &&
+        this.resister_day != "" &&
+        (this.inputGrade != 0 || this.inputGrade != "") &&
+        this.univ != ""
+      ) {
+        const his_info = {
+          date: this.resister_day,
+          name: this.inputName,
+          grade: this.inputGrade,
+          university: this.univ,
+        };
+
+        this.outputs.push(his_info);
+        this.resister_day = "";
+        this.inputName = "";
+        this.inputGrade = "";
+        this.univ = "";
+      }
     },
   },
+  // computed: {},
+  // created: {},
 };
 </script>
 <style>
