@@ -24,17 +24,30 @@
 
     <div v-for="output in outputs" v-bind:key="output">
       <div>
-        <div class="display">{{ output.date }}:</div>
-        <div class="display">{{ output.university }}の</div>
+        <div class="display">
+          {{ output.date }} {{ output.university }} {{ output.grade }}年
+          {{ output.name }}さんですね！
+        </div>
+        <!-- <div class="display">{{ output.university }}の</div>
         <div class="display">{{ output.grade }}年</div>
-        <div class="display">{{ output.name }}さんですね！</div>
+        <div class="display">{{ output.name }}さんですね！</div> -->
       </div>
     </div>
   </div>
+  <table border="1">
+    <tr>
+      <th>名前</th>
+      <th>年齢</th>
+    </tr>
+    <tr>
+      <td>田中</td>
+      <td>27</td>
+    </tr>
+  </table>
 </template>
 <script>
-// import { collection, addDoc } from "firebase/firestore";
-// import { db } from "./firebase";
+import { collection, addDoc, getDoc } from "firebase/firestore";
+import { db } from "./firebase";
 export default {
   data() {
     return {
@@ -44,6 +57,7 @@ export default {
       univ: "",
       outputs: [],
       output: "",
+      resistered: [],
     };
   },
   methods: {
@@ -60,7 +74,7 @@ export default {
           grade: this.inputGrade,
           university: this.univ,
         };
-
+        this.postResister(his_info);
         this.outputs.push(his_info);
         this.resister_day = "";
         this.inputName = "";
@@ -68,9 +82,21 @@ export default {
         this.univ = "";
       }
     },
+    postResister(info) {
+      addDoc(collection(db, "resists"), info);
+    },
   },
-  // computed: {},
-  // created: {},
+  computed: {},
+  created: function () {
+    getDoc(collection(db, "resists")).then((snapshot) => {
+      snapshot.forEach((doc) => {
+        this.resistered.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+    });
+  },
 };
 </script>
 <style>
