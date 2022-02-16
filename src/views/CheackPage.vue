@@ -1,13 +1,17 @@
 <template>
   <div>
-    <table border="1">
+    <table border="1" class="sheet">
       <tr>
+        <th>日付</th>
+        <th>大学</th>
+        <th>学年</th>
         <th>名前</th>
-        <th>年齢</th>
       </tr>
-      <tr>
-        <td>田中</td>
-        <td>27</td>
+      <tr v-for="firedoc in firedocs" v-bind:key="firedoc">
+        <td>{{ firedoc.date }}</td>
+        <td>{{ firedoc.university }}</td>
+        <td>{{ firedoc.grade }}</td>
+        <td>{{ firedoc.name }}</td>
       </tr>
     </table>
   </div>
@@ -24,14 +28,29 @@ export default {
     };
   },
   created: function () {
-    getDocs(collection(db, "resists")).then((snapshot) => {
-      snapshot.forEach((doc) => {
-        this.firedocs.push({
-          id: doc.id,
-          ...doc.data(),
+    getDocs(collection(db, "resists"))
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          this.firedocs.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+      })
+      .then(() => {
+        //非同期処理だから処理の早いこっちの方が優先されてしまうので、.then(function)を使って後に実行されるようにすると並び替えが完了する
+        this.firedocs.sort(function (a, b) {
+          return (
+            Number(a.date.split("-").join("")) -
+            Number(b.date.split("-").join(""))
+          );
         });
       });
-    });
   },
 };
 </script>
+<style>
+.sheet {
+  margin: auto;
+}
+</style>

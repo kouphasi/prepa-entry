@@ -1,4 +1,11 @@
 <template>
+  <header class="header">
+    <div class="left">Sophia ESS Discussion</div>
+    <div class="right">
+      <div class="box">プレパ参加登録</div>
+      <div class="box">for Cheef</div>
+    </div>
+  </header>
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |

@@ -34,16 +34,6 @@
       </div>
     </div>
   </div>
-  <table border="1">
-    <tr>
-      <th>名前</th>
-      <th>年齢</th>
-    </tr>
-    <tr>
-      <td>田中</td>
-      <td>27</td>
-    </tr>
-  </table>
 </template>
 <script>
 import { collection, addDoc, getDocs } from "firebase/firestore";
