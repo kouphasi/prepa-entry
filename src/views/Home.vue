@@ -46,8 +46,8 @@
   </table>
 </template>
 <script>
-import { collection, addDoc, getDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../firebase.js";
 export default {
   data() {
     return {
@@ -88,7 +88,7 @@ export default {
   },
   computed: {},
   created: function () {
-    getDoc(collection(db, "resists")).then((snapshot) => {
+    getDocs(collection(db, "resists")).then((snapshot) => {
       snapshot.forEach((doc) => {
         this.resistered.push({
           id: doc.id,
