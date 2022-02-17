@@ -27,6 +27,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
+  base: "/subdir/",
   routes,
 });
 

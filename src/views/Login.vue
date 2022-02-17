@@ -4,12 +4,9 @@
     <input type="text" v-model="id" />
   </div>
   <div><input type="text" v-model="pwd" /></div>
-  <!-- <div v-bind:disabled="notCorrect">
-    <router-link to="/cp" v-bind:disabled="notCorrect">ログイン</router-link>
-  </div> -->
-  <button v-on:click="log">ログイン</button>
-  <div>{{ notCorrect }}</div>
-  <div>{{ infos[0].id }}</div>
+
+  <button v-on:click="log" v-bind:disabled="notCorrect">ログイン</button>
+  <!-- <div>{{ notCorrect }}</div> -->
 </template>
 <script>
 import { collection, /*addDoc,*/ getDocs } from "firebase/firestore";
@@ -24,20 +21,16 @@ export default {
   },
   methods: {
     log() {
-      this.notCorrect;
+      this.$router.push("/cp");
     },
   },
   computed: {
     notCorrect: function () {
       let flag = true;
-      let he = { id: this.id, pwd: this.pwd };
-      for (let i = 0; i < this.infos.length; i++) {
-        if (this.infos[i].id === he.id && this.infos[i].pwd === he.id) {
-          flag = false;
-          break;
-        } else {
-          flag = true;
-        }
+      if (this.id === "disCheef" && this.pwd === "diSophia344") {
+        flag = false;
+      } else {
+        flag = true;
       }
       return flag;
     },
