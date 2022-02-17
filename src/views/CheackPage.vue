@@ -1,5 +1,6 @@
 <template>
   <div>
+    <input type="date" name="" id="" v-model="day" />
     <table border="1" class="sheet">
       <tr>
         <th>日付</th>
@@ -7,7 +8,7 @@
         <th>学年</th>
         <th>名前</th>
       </tr>
-      <tr v-for="firedoc in firedocs" v-bind:key="firedoc">
+      <tr v-for="firedoc in output_table" v-bind:key="firedoc">
         <td>{{ firedoc.date }}</td>
         <td>{{ firedoc.university }}</td>
         <td>{{ firedoc.grade }}</td>
@@ -15,17 +16,36 @@
       </tr>
     </table>
   </div>
+  <div>{{ resistered_dates }}</div>
   <!-- <div>{{ firedocs }}</div> -->
 </template>
 
 <script>
 import { collection, /*addDoc,*/ getDocs } from "firebase/firestore";
 import { db } from "../firebase.js";
+// import func from "vue-editor-bridge";
 export default {
   data() {
     return {
       firedocs: [], //代入される値の型は[ { "id": "8CcycWJo8GDKB1LXPiEs", "name": "a", "date": "2022-02-15", "university": "慶應", "grade": 2 }, ... ]
+      day: "",
     };
+  },
+  computed: {
+    output_table: function () {
+      let table = [];
+      if (this.day === "") {
+        table = this.firedocs;
+      } else {
+        for (let i = 0; i < this.firedocs.length; i++) {
+          if (this.day === this.firedocs[i].date) {
+            table.push(this.firedocs[i]);
+          }
+        }
+      }
+
+      return table;
+    },
   },
   created: function () {
     getDocs(collection(db, "resists"))
