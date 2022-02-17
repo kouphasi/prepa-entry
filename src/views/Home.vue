@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc /*getDocs*/ } from "firebase/firestore";
 import { db } from "../firebase.js";
 export default {
   data() {
@@ -77,16 +77,16 @@ export default {
     },
   },
   computed: {},
-  created: function () {
-    getDocs(collection(db, "resists")).then((snapshot) => {
-      snapshot.forEach((doc) => {
-        this.resistered.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-      });
-    });
-  },
+  // created: function () {
+  //   getDocs(collection(db, "resists")).then((snapshot) => {
+  //     snapshot.forEach((doc) => {
+  //       this.resistered.push({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       });
+  //     });
+  //   });
+  // },
 };
 </script>
 <style>

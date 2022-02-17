@@ -15,7 +15,7 @@
       </tr>
     </table>
   </div>
-  <div>{{ firedocs }}</div>
+  <!-- <div>{{ firedocs }}</div> -->
 </template>
 
 <script>
