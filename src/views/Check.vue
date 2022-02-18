@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>登録表</h1>
+    <div>(名前がない場合は再登録してください)</div>
     <div>日付絞り込み</div>
     <input type="date" name="" id="" v-model="day" />
     <table border="1" class="sheet">

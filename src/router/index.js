@@ -10,6 +10,7 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+    meta: { title: "プレパ登録", desc: "プレパ参加登録" },
   },
   {
     path: "/login",

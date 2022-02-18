@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>プレパ参加登録</h1>
+    <div>(日程はLineBotより#prepasを送信して確認してください)</div>
     <div>参加日</div>
     <input type="date" v-model="resister_day" />
     <div>氏名(ニックネーム)</div>
