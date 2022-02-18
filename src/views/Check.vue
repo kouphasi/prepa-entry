@@ -36,12 +36,29 @@ export default {
   computed: {
     output_table: function () {
       let table = [];
+      let from_today = [];
+      const today = new Date();
+      let month = today.getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month;
+      }
+      const d = today.getDate();
+      const year = today.getFullYear();
+      const str = year + "-" + month + "-" + d;
+      const n = Number(str.split("-").join(""));
+
+      for (let i = 0; i < this.firedocs.length; i++) {
+        var x = Number(this.firedocs[i].date.split("-").join(""));
+        if (x >= n) {
+          from_today.push(this.firedocs[i]);
+        }
+      }
       if (this.day === "") {
-        table = this.firedocs;
+        table = from_today;
       } else {
-        for (let i = 0; i < this.firedocs.length; i++) {
-          if (this.day === this.firedocs[i].date) {
-            table.push(this.firedocs[i]);
+        for (let i = 0; i < from_today.length; i++) {
+          if (this.day === from_today[i].date) {
+            table.push(from_today[i]);
           }
         }
       }
@@ -73,7 +90,6 @@ export default {
 </script>
 <style>
 .sheet {
-  /* margin-top: 2rem; */
-  margin: auto;
+  margin-top: 2rem;
 }
 </style>

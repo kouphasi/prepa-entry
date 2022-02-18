@@ -1,8 +1,9 @@
 <template>
   <div>
+    <h1>プレパ参加登録</h1>
     <div>参加日</div>
     <input type="date" v-model="resister_day" />
-    <div>氏名</div>
+    <div>氏名(ニックネーム)</div>
     <input type="text" v-model="inputName" />
     <div>大学</div>
     <select name="" id="" v-model="univ">

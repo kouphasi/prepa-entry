@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import CheackPage from "../views/CheackPage.vue";
 import Login from "../views/Login.vue";
+import Check from "../views/Check.vue";
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     path: "/cp",
     name: "checkpage",
     component: CheackPage,
+  },
+  {
+    path: "/check",
+    name: "CheckpageForOther",
+    component: Check,
   },
 ];
 

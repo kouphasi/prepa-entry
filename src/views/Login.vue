@@ -1,8 +1,10 @@
 <template>
   <h1>管理者ログイン</h1>
+  <div>id</div>
   <div>
     <input type="text" v-model="id" />
   </div>
+  <div>password</div>
   <div><input type="text" v-model="pwd" /></div>
 
   <button v-on:click="log" v-bind:disabled="notCorrect">ログイン</button>
