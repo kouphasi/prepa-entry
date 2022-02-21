@@ -9,6 +9,7 @@
     <div>大学</div>
     <select name="" id="" v-model="univ">
       <option value="">大学を選択してください</option>
+      <option>上智</option>
       <option>慶應</option>
       <option>東女</option>
       <option>フェリス</option>

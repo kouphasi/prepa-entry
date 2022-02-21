@@ -87,6 +87,7 @@ header {
   display: flex;
   justify-content: space-between;
   font-family: "M PLUS Rounded 1c", sans-serif;
+  width: 100%;
 }
 .logo {
   width: 4rem;
@@ -104,7 +105,7 @@ header {
   justify-content: right;
   text-align: right;
   margin: 1rem auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   /* border: 2px solid black; */
 }
 </style>
