@@ -2,9 +2,25 @@
   <div>
     <h1>登録表</h1>
     <div>(名前がない場合は再登録してください)</div>
-    <div>日付絞り込み</div>
-    <div>今日は{{ today }}</div>
+    <div>絞り込み</div>
+    <!-- <div>今日は{{ today }}</div> -->
     <input type="date" name="" id="" v-model="day" />
+    <div>
+      <select name="" id="" v-model="univ">
+        <option value="">大学を選択してください</option>
+        <option>上智</option>
+        <option>慶應</option>
+        <option>東女</option>
+        <option>フェリス</option>
+        <option>獨協</option>
+        <option>立教</option>
+        <option>早稲田</option>
+        <option>青学</option>
+        <option>明治</option>
+        <option>その他</option>
+      </select>
+    </div>
+
     <table border="1" class="sheet">
       <tr>
         <th>日付</th>
@@ -34,11 +50,13 @@ export default {
       firedocs: [], //代入される値の型は[ { "id": "8CcycWJo8GDKB1LXPiEs", "name": "a", "date": "2022-02-15", "university": "慶應", "grade": 2 }, ... ]
       day: "",
       // today: 0,
+      univ: "",
     };
   },
   computed: {
     output_table: function () {
       let table = [];
+      let table_date = [];
       let from_today = [];
       const today = new Date();
       let month = today.getMonth() + 1;
@@ -59,32 +77,41 @@ export default {
         }
       }
       if (this.day === "") {
-        table = from_today;
+        table_date = from_today;
       } else {
         for (let i = 0; i < from_today.length; i++) {
           if (this.day === from_today[i].date) {
-            table.push(from_today[i]);
+            table_date.push(from_today[i]);
+          }
+        }
+      }
+      if (this.univ === "") {
+        table = table_date;
+      } else {
+        for (let i = 0; i < table_date.length; i++) {
+          if (this.univ === table_date[i].university) {
+            table.push(table_date[i]);
           }
         }
       }
 
       return table;
     },
-    today: function () {
-      const today = new Date();
-      let month = today.getMonth() + 1;
-      if (month < 10) {
-        month = "0" + month;
-      }
-      let d = today.getDate();
-      if (d < 10) {
-        d = "0" + d;
-      }
-      const year = today.getFullYear();
-      const str = year + "-" + month + "-" + d;
-      const n = Number(str.split("-").join(""));
-      return n;
-    },
+    // today: function () {
+    //   const today = new Date();
+    //   let month = today.getMonth() + 1;
+    //   if (month < 10) {
+    //     month = "0" + month;
+    //   }
+    //   let d = today.getDate();
+    //   if (d < 10) {
+    //     d = "0" + d;
+    //   }
+    //   const year = today.getFullYear();
+    //   const str = year + "-" + month + "-" + d;
+    //   const n = Number(str.split("-").join(""));
+    //   return n;
+    // },
   },
   created: function () {
     getDocs(collection(db, "resists"))
