@@ -4,9 +4,9 @@
     <div>(名前がない場合は再登録してください)</div>
     <div>絞り込み</div>
     <!-- <div>今日は{{ today }}</div> -->
-    <input type="date" name="" id="" v-model="day" />
+    <input type="date" name="" id="" v-model="day" class="selectDate" />
     <div>
-      <select name="" id="" v-model="univ">
+      <select name="" id="" v-model="univ" class="selectUniv">
         <option value="">大学を選択してください</option>
         <option>上智</option>
         <option>慶應</option>
@@ -138,5 +138,12 @@ export default {
 <style>
 .sheet {
   margin-top: 2rem;
+}
+.selectDate {
+  margin-bottom: 1rem;
+}
+.selectUniv {
+  margin-bottom: 1rem;
+  border-radius: 10px 10px 10px 10px;
 }
 </style>

@@ -7,7 +7,7 @@
     <nav class="right">
       <router-link to="/" class="box">プレパ参加登録</router-link>
       <router-link to="/check" class="box">登録確認</router-link>
-      <router-link to="login" class="box">for Cheef</router-link>
+      <router-link to="login" class="box">for Chief</router-link>
     </nav>
   </div>
   <!-- <nav>
@@ -86,8 +86,10 @@ nav a.router-link-exact-active {
   background-color: coral;
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
   font-family: "M PLUS Rounded 1c", sans-serif;
   width: 100%;
+  height: auto;
 }
 .logo {
   width: 4rem;
