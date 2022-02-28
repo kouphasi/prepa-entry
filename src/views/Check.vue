@@ -3,6 +3,7 @@
     <h1>登録表</h1>
     <div>(名前がない場合は再登録してください)</div>
     <div>日付絞り込み</div>
+    <div>今日は{{ today }}</div>
     <input type="date" name="" id="" v-model="day" />
     <table border="1" class="sheet">
       <tr>
@@ -32,6 +33,7 @@ export default {
     return {
       firedocs: [], //代入される値の型は[ { "id": "8CcycWJo8GDKB1LXPiEs", "name": "a", "date": "2022-02-15", "university": "慶應", "grade": 2 }, ... ]
       day: "",
+      // today: 0,
     };
   },
   computed: {
@@ -43,11 +45,13 @@ export default {
       if (month < 10) {
         month = "0" + month;
       }
-      const d = today.getDate();
+      let d = today.getDate();
+      if (d < 10) {
+        d = "0" + d;
+      }
       const year = today.getFullYear();
       const str = year + "-" + month + "-" + d;
       const n = Number(str.split("-").join(""));
-
       for (let i = 0; i < this.firedocs.length; i++) {
         var x = Number(this.firedocs[i].date.split("-").join(""));
         if (x >= n) {
@@ -65,6 +69,21 @@ export default {
       }
 
       return table;
+    },
+    today: function () {
+      const today = new Date();
+      let month = today.getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month;
+      }
+      let d = today.getDate();
+      if (d < 10) {
+        d = "0" + d;
+      }
+      const year = today.getFullYear();
+      const str = year + "-" + month + "-" + d;
+      const n = Number(str.split("-").join(""));
+      return n;
     },
   },
   created: function () {

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <div class="header">
     <div class="left">
       <img src="./img/ess_logo.jpg" alt="" class="logo" />
       <h1>Sophia ESS Discussion</h1>
@@ -9,7 +9,7 @@
       <router-link to="/check" class="box">登録確認</router-link>
       <router-link to="login" class="box">for Cheef</router-link>
     </nav>
-  </header>
+  </div>
   <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/login">About</router-link> |
@@ -82,7 +82,7 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700;800&display=swap");
-header {
+.header {
   background-color: coral;
   display: flex;
   justify-content: space-between;
